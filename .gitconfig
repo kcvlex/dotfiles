@@ -1,0 +1,6 @@
+[user]
+	userConfigOnly = true
+[merge]
+	ff = false
+[core]
+	editor = vim -c \"set fenc=utf-8\"
