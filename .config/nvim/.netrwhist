@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/home/taroy/.config/google-chrome/Default/Pepper Data/Shockwave Flash/WritableRoot/#SharedObjects'
-let g:netrw_dirhist_2='/home/taroy/.config/google-chrome/Default/Pepper Data/Shockwave Flash/WritableRoot/#SharedObjects/H43MC3CA'
-let g:netrw_dirhist_3='/home/taroy/aidemy/aidemy-checker'
-let g:netrw_dirhist_4='/home/taroy/aidemy'
-let g:netrw_dirhist_5='/home/taroy/aidemy/aidemy-checker'
-let g:netrw_dirhist_6='/home/taroy/aidemy/aidemy-checker/aidemychecker'
-let g:netrw_dirhist_7='/home/taroy/aidemy/aidemy-checker/aidemychecker/checker_ast'
