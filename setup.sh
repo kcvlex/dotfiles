@@ -18,7 +18,7 @@ function symbolic_link(){
     ln -s ./.Xmodmap $HOME/.Xmodmap
     ln -s ./.Xresources $HOME/.Xresources
     ln -s ./.gitconfig $HOME/.gitconfig
-    ln -s ./.i3 $HOME/.config/i3
+    ln -s ./.i3config $HOME/.config/i3/config
     ln -s ./.tmux.conf $HOME/.tmux.conf
     ln -s ./.vimrc $HOME/.config/nvim/init.vim
     ln -s ./.xinitrc $HOME/.xinitrc
@@ -29,7 +29,7 @@ function symbolic_link(){
 function execution(){
     xmodmap $HOME/.Xmodmap
     xrdb -load $HOME/.Xresources
-    source .zshrc
+    source $HOME/.zshrc
 }
 
 install
