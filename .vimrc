@@ -52,11 +52,14 @@ endif
 syntax on
 set fenc=utf-8
 set number
+set noswapfile
 set smartindent
 set virtualedit=onemore
 set showmatch
 set tabstop=4
 set shiftwidth=4
+autocmd ColorScheme * highlight LineNr ctermfg=239
+
 if !has('nvim')
     set clipboard=unnamed,autoselect
 else
