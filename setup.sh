@@ -1,4 +1,4 @@
-function install(){
+function install() {
     sudo pacman -S zsh \
                    git \
                    xorg-xinit \
@@ -11,7 +11,7 @@ function install(){
                    firefox
 }
 
-function symbolic_link(){
+function symbolic_link() {
     mkdir -p $HOME/.config/i3
     mkdir -p $HOME/.config/nvim
     
@@ -26,7 +26,7 @@ function symbolic_link(){
     ln -s ./.zshrc $HOME/.zshrc
 }
 
-function execution(){
+function execution() {
     xmodmap $HOME/.Xmodmap
     xrdb -load $HOME/.Xresources
     source $HOME/.zshrc
