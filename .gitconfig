@@ -1,5 +1,7 @@
 [user]
 	userConfigOnly = true
+	name = ryotaro.kasuga
+	email = krkr9893@gmail.com
 [merge]
 	ff = false
 [core]

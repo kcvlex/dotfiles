@@ -37,6 +37,7 @@ URxvt.color14:     [100]#8ec07c
 URxvt.color15:     [100]#ebdbb2
 URxvt.foreground:  [100]#ebdbb2
 URxvt.background:  [90]#282828
+!URxvt.background:  [100]#282828
 URxvt.colorIT:     [100]#8ec07c
 URxvt.colorBD:     [100]#fe8019
 URxvt.colorUL:     [100]#83a598

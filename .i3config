@@ -85,10 +85,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+Shift+s split h
+bindsym $mod+Shift+v split h
 
 # split in vertical orientation
-bindsym $mod+Shift+v split v
+bindsym $mod+Shift+s split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -131,16 +131,16 @@ set $ws9 "9"
 set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1 ; exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/*
-bindsym $mod+2 workspace $ws2 ; exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/*
-bindsym $mod+3 workspace $ws3 ; exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/*
-bindsym $mod+4 workspace $ws4 ; exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/*
-bindsym $mod+5 workspace $ws5 ; exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/*
-bindsym $mod+6 workspace $ws6 ; exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/*
-bindsym $mod+7 workspace $ws7 ; exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/*
-bindsym $mod+8 workspace $ws8 ; exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/*
-bindsym $mod+9 workspace $ws9 ; exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/*
-bindsym $mod+0 workspace $ws10 ; exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/*
+bindsym $mod+1 exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/* ; workspace $ws1
+bindsym $mod+2 exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/* ; workspace $ws2
+bindsym $mod+3 exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/* ; workspace $ws3
+bindsym $mod+4 exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/* ; workspace $ws4
+bindsym $mod+5 exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/* ; workspace $ws5
+bindsym $mod+6 exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/* ; workspace $ws6
+bindsym $mod+7 exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/* ; workspace $ws7
+bindsym $mod+8 exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/* ; workspace $ws8
+bindsym $mod+9 exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/* ; workspace $ws9
+bindsym $mod+0 exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/* ; workspace $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -213,7 +213,6 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-exec --no-startup-id "feh --bg-scale $HOME/.config/i3/ayatsuji.png"
 exec --no-startup-id nm-applet
 exec --no-startup-id compton
 exec --no-startup-id fcitx
@@ -222,3 +221,5 @@ exec --no-startup-id xautolock -time 10 -locker i3lock
 exec --no-startup-id volumeicon
 exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/*
 bindsym $mod+Print exec --no-startup-id import -window root ~/Pictures/screenshot/screenshot`date "+%y%m%d%H%M"`.jpg
+focus_follows_mouse no
+focus_wrapping no
