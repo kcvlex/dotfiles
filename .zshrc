@@ -15,6 +15,10 @@ alias javaws='_JAVA_OPTIONS="-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKL
 alias rime='~/.local/bin/rime'
 alias hatasa='yes'
 alias make='CCACHE_DIR=${pwd}/build/ccache make'
+alias keepassx="cp Documents/.key.kdb.swap Documents/.key.kdb.swap.swap && cp Documents/key.kdb Documents/.key.kdb.swap && keepassx"
+alias unsip-sjis="UNZIPOPT=\"-OCP932\" unzip"
+alias eclipse="LANG=C eclipse"
+
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"

@@ -76,4 +76,4 @@ set autoread
 setlocal cindent cino=N-s,j1,(0,ws,Ws
 autocmd CursorHold * checktime
 highlight LineNr ctermfg=239
-autocmd FileType scala setlocal shiftwidth=2 tabstop=2 smartindent expandtab
+autocmd FileType scala set shiftwidth=2 tabstop=2 smartindent expandtab
