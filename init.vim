@@ -22,6 +22,11 @@ if dein#load_state('/home/taroy/.cache/dein')
   call dein#add('miyakogi/seiya.vim')
   call dein#add('simeji/winresizer')
   call dein#add('derekwyatt/vim-scala')
+  call dein#add('udalov/kotlin-vim')
+  call dein#add('lervag/vimtex')
+  call dein#add('vhda/verilog_systemverilog.vim')
+  call dein#add('tounaishouta/coq.vim')
+  call dein#add('elixir-editors/vim-elixir')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': '01203d4c9' })
@@ -59,11 +64,14 @@ let g:seiya_auto_enable=1
 
 "Colerschema configuration
 let g:alduin_Shout_Aura_Whisper = 1
-colorscheme alduin 
+colorscheme alduin
+
+"TeX
+let g:tex_flavor = 'latex'
 
 "Default configuration
 syntax on
-set fenc=utf-8
+set fileencodings=utf-8,cp932
 set number
 set noswapfile
 set smartindent
@@ -73,7 +81,15 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set autoread
-setlocal cindent cino=N-s,j1,(0,ws,Ws
+set inccommand=""
+set viminfo='100,<0,s10,h
 autocmd CursorHold * checktime
 highlight LineNr ctermfg=239
 autocmd FileType scala set shiftwidth=2 tabstop=2 smartindent expandtab
+autocmd FileType javascript set shiftwidth=2 tabstop=2 smartindent expandtab
+autocmd FileType ocaml set shiftwidth=2 tabstop=2 smartindent expandtab
+set cindent cino=N-s,j1,(0,ws,Ws
+autocmd BufNewFile,BufRead *.tsx  set filetype=typescript syntax=typescript
+autocmd BufNewFile,BufRead *.hv  set filetype=verilog_systemverilog syntax=verilog_systemverilog
+au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setf glsl
+" autocmd BufNewFile,BufRead *.coq.v set filetype=coq syntax=coq sw=2 ts=2 smartindent expandtab
