@@ -4,37 +4,28 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/home/taroy/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=/home/kcvlex/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/home/taroy/.cache/dein')
-  call dein#begin('/home/taroy/.cache/dein')
+call dein#begin('/home/kcvlex/.cache/dein')
 
-  " Let dein manage dein
-  " Required:
-  call dein#add('/home/taroy/.cache/dein/repos/github.com/Shougo/dein.vim')
+" Let dein manage dein
+" Required:
+call dein#add('/home/kcvlex/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-  " Add or remove your plugins here:
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('ctrlpvim/ctrlp.vim')
-  call dein#add('flazz/vim-colorschemes')
-  call dein#add('AlessandroYorba/Alduin')
-  call dein#add('miyakogi/seiya.vim')
-  call dein#add('simeji/winresizer')
-  call dein#add('derekwyatt/vim-scala')
-  call dein#add('udalov/kotlin-vim')
-  call dein#add('lervag/vimtex')
-  call dein#add('vhda/verilog_systemverilog.vim')
-  call dein#add('tounaishouta/coq.vim')
-  call dein#add('elixir-editors/vim-elixir')
+" Add or remove your plugins here like this:
+"call dein#add('Shougo/neosnippet.vim')
+"call dein#add('Shougo/neosnippet-snippets')
+call dein#add('tpope/vim-fugitive')
+call dein#add('AlessandroYorba/Alduin')
+call dein#add('miyakogi/seiya.vim')
+call dein#add('simeji/winresizer')
+call dein#add('rust-lang/rust.vim')
+call dein#add('neovim/nvim-lspconfig')
+call dein#add('neoclide/coc.nvim', { 'merged': 0, 'rev': 'release' })
 
-  " You can specify revision/branch/tag.
-  call dein#add('Shougo/deol.nvim', { 'rev': '01203d4c9' })
-
-  " Required:
-  call dein#end()
-  call dein#save_state()
-endif
+" Required:
+call dein#end()
 
 " Required:
 filetype plugin indent on
@@ -46,6 +37,8 @@ if dein#check_install()
 endif
 
 "End dein Scripts-------------------------
+
+
 
 if !has('nvim')
     set clipboard=unnamed,autoselect
@@ -92,4 +85,60 @@ set cindent cino=N-s,j1,(0,ws,Ws
 autocmd BufNewFile,BufRead *.tsx  set filetype=typescript syntax=typescript
 autocmd BufNewFile,BufRead *.hv  set filetype=verilog_systemverilog syntax=verilog_systemverilog
 au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setf glsl
+autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd FileType vue setlocal shiftwidth=2
+autocmd FileType typescript setlocal shiftwidth=2
+
 " autocmd BufNewFile,BufRead *.coq.v set filetype=coq syntax=coq sw=2 ts=2 smartindent expandtab
+
+
+:lua << EOF
+-- Mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local opts = { noremap=true, silent=true }
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  -- Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, bufopts)
+  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  -- vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+end
+
+local lsp_flags = {
+  -- This is the default in Nvim 0.7+
+  debounce_text_changes = 150,
+}
+require('lspconfig')['rust_analyzer'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    -- Server-specific settings...
+    settings = {
+        ["rust-analyzer"] = {}
+    }
+}
+EOF
+
+au FileType * setlocal formatoptions-=cro
