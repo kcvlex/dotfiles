@@ -43,7 +43,8 @@ set $right l
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec --no-startup-id /home/kcvlex/.config/i3/term_for_display.sh
 #bindsym $mod+Shift+Return exec pwd > $HOME/last_dir ; exec export TERMINAL=$(cat last_dir) ; exec i3-sensible-terminal
 #bindsym $mod+Shift+Return exec --no-startup-id pwd
 #bndsym $mod+Shift+Return exec pwd > /tmp/whereami ; exec i3-sensible-terminal ; exec cat /tmp/whereami | cd
@@ -206,6 +207,24 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 # Enter resize mode
 bindsym $mod+r mode "resize"
 
+## Manual management of external displays
+# Set the shortcuts and what they do
+set $mode_display Ext Screen: (2) DP-2 ON, (Shift+2) DP-2 OFF, (3) DP-1 ON, (Shift+3) DP-3 OFF
+mode "$mode_display" {
+    bindsym 2 exec --no-startup-id xrandr --output DP-2 --auto --above eDP-1, mode "default"
+    bindsym Shift+2 exec --no-startup-id xrandr --output DP-2 --auto --off, mode "default"
+    bindsym 3 exec --no-startup-id xrandr --output DP-3 --auto --above eDP-1, mode "default"
+    bindsym Shift+3 exec --no-startup-id xrandr --output DP-3 --auto --off, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+# Declare here the shortcut to bring the display selection menu
+bindsym $mod+x mode "$mode_display"
+bindsym $mod+Ctrl+greater move workspace to output up
+bindsym $mod+Ctrl+less move workspace to output down
+
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -213,13 +232,13 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+exec --no-startup-id volumeicon
 exec --no-startup-id nm-applet
 exec --no-startup-id compton
-exec --no-startup-id fcitx
+exec --no-startup-id fcitx5
 exec --no-startup-id dunst
 exec --no-startup-id xautolock -time 10 -locker i3lock
-exec --no-startup-id volumeicon
-exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/*
+# exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/*
 bindsym $mod+Print exec --no-startup-id import -window root ~/Pictures/screenshot/screenshot`date "+%y%m%d%H%M"`.jpg
 focus_follows_mouse no
 focus_wrapping no

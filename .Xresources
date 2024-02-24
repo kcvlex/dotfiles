@@ -10,7 +10,8 @@ URxvt.inputMethod: fcitx
 URxvt.preeditType: OnTheSpot
 
 !URxvt.font: xft:Ricty:Regular:size=10:antialias=true
-URxvt.font: xft:Dejavu Sans Mono-8,\
+URxvt.font: xft:Dejavu Sans Mono:size=9,\
+            xft:SauceCodePro Nerd Font Mono,\
             xft:IPAGothic
 URxvt.letterSpace: -1
 
@@ -54,3 +55,5 @@ URxvt.tabbed.bell-fg:     244
 URxvt.tabbed.bell-bg:     17
 URxvt.tabbed.title-fg:    28
 URxvt.tabbed.title-bg:    16
+
+Xcursor.size: 16

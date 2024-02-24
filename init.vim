@@ -1,48 +1,15 @@
-"dein Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
-
-" Required:
-set runtimepath+=/home/kcvlex/.cache/dein/repos/github.com/Shougo/dein.vim
-
-" Required:
-call dein#begin('/home/kcvlex/.cache/dein')
-
-" Let dein manage dein
-" Required:
-call dein#add('/home/kcvlex/.cache/dein/repos/github.com/Shougo/dein.vim')
-
-" Add or remove your plugins here like this:
-"call dein#add('Shougo/neosnippet.vim')
-"call dein#add('Shougo/neosnippet-snippets')
-call dein#add('tpope/vim-fugitive')
-call dein#add('AlessandroYorba/Alduin')
-call dein#add('miyakogi/seiya.vim')
-call dein#add('simeji/winresizer')
-call dein#add('rust-lang/rust.vim')
-call dein#add('vim-airline/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
-call dein#add('prabirshrestha/vim-lsp')
-call dein#add('mattn/vim-lsp-settings')
-"call dein#add('neovim/nvim-lspconfig')
-"call dein#add('neoclide/coc.nvim', { 'merged': 0, 'rev': 'release' })
-
-" Required:
-call dein#end()
-
-" Required:
-filetype plugin indent on
-syntax enable
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-
-"End dein Scripts-------------------------
-
-
+call plug#begin()
+Plug 'tpope/vim-fugitive'
+Plug 'AlessandroYorba/Alduin'
+Plug 'miyakogi/seiya.vim'
+Plug 'simeji/winresizer'
+Plug 'rust-lang/rust.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'neovim/nvim-lspconfig'
+call plug#end()
 
 if !has('nvim')
     set clipboard=unnamed,autoselect
@@ -58,10 +25,6 @@ nnoremap <ESC><ESC> :noh<CR>
 
 "Indent
 let g:seiya_auto_enable=1
-
-"Colerschema configuration
-let g:alduin_Shout_Aura_Whisper = 1
-colorscheme alduin
 
 "TeX
 let g:tex_flavor = 'latex'
@@ -110,8 +73,8 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)
 
-    let g:lsp_format_sync_timeout = 1000
-    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+    " let g:lsp_format_sync_timeout = 1000
+    " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
     
     " refer to doc to add more commands
 endfunction
@@ -123,3 +86,19 @@ augroup lsp_install
 augroup END
 
 let g:airline_powerline_fonts = 1
+
+:lua << EOF
+local lspconfig = require('lspconfig')
+lspconfig.rust_analyzer.setup {
+  -- Server-specific settings. See `:help lspconfig-setup`
+  settings = {
+    ['rust-analyzer'] = {},
+  },
+}
+EOF
+
+"Colerschema configuration
+let g:alduin_Shout_Aura_Whisper = 1
+colorscheme alduin
+
+au FileType * setlocal formatoptions-=ro
