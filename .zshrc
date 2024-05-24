@@ -37,7 +37,7 @@ export JAVA_HOME=/usr/lib/jvm/default
 export PATH="${HOME}/.local/bin:${PATH}"
 export PATH="${PATH}:${HOME}/go/bin"
 
-eval $(opam env)
+# eval $(opam env)
 
 PROMPT="%K{000}%F{040}[%n@%m %1~]%f%k "
 
@@ -49,12 +49,12 @@ compinit
 #source /usr/share/git/completion/git-completion.zsh
 #PS1='[%n@%m %c$(__git_ps1 " (%s)")]\$ '
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/kcvlex/gomi/google-cloud-sdk/path.zsh.inc' ]; then . '/home/kcvlex/gomi/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/kcvlex/gomi/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/kcvlex/gomi/google-cloud-sdk/completion.zsh.inc'; fi
-
 export GOPROXY=direct
 
-powerline-daemon -q
+# powerline-daemon -q
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/kcvlex/google-cloud-sdk/path.zsh.inc' ]; then . '/home/kcvlex/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/kcvlex/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/kcvlex/google-cloud-sdk/completion.zsh.inc'; fi

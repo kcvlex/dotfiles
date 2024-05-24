@@ -1,9 +1,6 @@
 URxvt.loginShell: true
 URxvt.skipBuiltinGlyphs:    true
 
-URxvt.perl-ext:
-URxvt.perl-ext-common:
-
 URxvt.scrollBar: false
 
 URxvt.inputMethod: fcitx
@@ -12,6 +9,8 @@ URxvt.preeditType: OnTheSpot
 !URxvt.font: xft:Ricty:Regular:size=10:antialias=true
 URxvt.font: xft:Dejavu Sans Mono:size=9,\
             xft:SauceCodePro Nerd Font Mono,\
+            xft:Noto Color Emoji, \
+            xft:Noto Sans Mono CJK JP,\
             xft:IPAGothic
 URxvt.letterSpace: -1
 
@@ -57,3 +56,6 @@ URxvt.tabbed.title-fg:    28
 URxvt.tabbed.title-bg:    16
 
 Xcursor.size: 16
+
+URxvt.perl-ext-common: resize-font
+URxvt.resize-font.step: 1
