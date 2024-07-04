@@ -57,7 +57,6 @@ local on_lsp_buffer_enabled = function()
     vim.keymap.set('n', 'gd', '<plug>(lsp-definition)', { buffer = true })
     -- vim.keymap.set('n', 'gs', '<plug>(lsp-document-symbol-search)', { buffer = true })
     vim.keymap.set('n', 'gs', '<C-w>]', { buffer = true })
-    vim.keymap.set('n', 'gv', '<C-w>v', { buffer = true })
     vim.keymap.set('n', 'gS', '<plug>(lsp-workspace-symbol-search)', { buffer = true })
     vim.keymap.set('n', 'gr', '<plug>(lsp-references)', { buffer = true })
     vim.keymap.set('n', 'gi', '<plug>(lsp-implementation)', { buffer = true })
@@ -109,13 +108,25 @@ vim.api.nvim_create_autocmd({ 'User' }, {
 })
 
 local lspconfig = require('lspconfig')
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+local function on_attach(client, _)
+  client.server_capabilities.semanticTokensProvider = nil
+end
+
+lspconfig.clangd.setup {
+  capabilities = lsp_capabilities,
+  on_attach = on_attach,
+}
+
 lspconfig.rust_analyzer.setup {
-  -- Server-specific settings. See `:help lspconfig-setup`
   settings = {
-    ['rust-analyzer'] = {
-    },
+    ['rust-analyzer'] = { },
   },
-  on_attach = function(client, _)
-    client.server_capabilities.semanticTokensProvider = nil
-  end
+  on_attach = on_attach,
+}
+
+lspconfig.pylsp.setup {
+  capabilities = lsp_capabilities,
+  on_attach = on_attach,
 }
