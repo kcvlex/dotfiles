@@ -1,4 +1,3 @@
-local lspconfig = require('lspconfig')
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local M = {}
@@ -16,19 +15,35 @@ function M.on_attach(client, bufnr)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
 end
 
-lspconfig.clangd.setup {
-    capabilities = lsp_capabilities,
-    on_attach = M.on_attach,
+local servers = {
+    clangd = {
+        cmd = { 'clangd' },
+        filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
+        root_markers = { '.clangd', 'compile_commands.json', 'compile_flags.txt', '.git' },
+    },
+    pylsp = {
+        cmd = { 'pylsp' },
+        filetypes = { 'python' },
+        root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', '.git' },
+    },
+    cmake = {
+        cmd = { 'cmake-language-server' },
+        filetypes = { 'cmake' },
+        root_markers = { 'CMakeLists.txt', '.git' },
+    },
 }
 
-lspconfig.pylsp.setup {
-    capabilities = lsp_capabilities,
-    on_attach = M.on_attach,
-}
+for name, config in pairs(servers) do
+    config.capabilities = lsp_capabilities
+    vim.lsp.config(name, config)
+end
 
-lspconfig.cmake.setup {
-    capabilities = lsp_capabilities,
-    on_attach = M.on_attach,
-}
+vim.lsp.enable(vim.tbl_keys(servers))
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(args)
+        M.on_attach(vim.lsp.get_client_by_id(args.data.client_id), args.buf)
+    end,
+})
 
 return M
