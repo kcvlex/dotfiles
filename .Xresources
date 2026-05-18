@@ -7,12 +7,12 @@ URxvt.inputMethod: fcitx
 URxvt.preeditType: OnTheSpot
 
 !URxvt.font: xft:Ricty:Regular:size=10:antialias=true
-URxvt.font: xft:Dejavu Sans Mono:size=9,\
+URxvt.font: xft:DejaVuSans Mono:size=9,\
             xft:SauceCodePro Nerd Font Mono,\
             xft:Noto Color Emoji, \
-            xft:Noto Sans Mono CJK JP,\
-            xft:IPAGothic
-URxvt.letterSpace: -1
+            xft:IPAGothic:size=9, \
+            xft:Noto Sans Mono CJK JP
+!URxvt.letterSpace: -1
 
 URxvt.highlightColor:      lightsteelblue
 URxvt.highlightTextColor:  #2d2d2d

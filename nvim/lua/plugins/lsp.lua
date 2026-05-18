@@ -13,6 +13,8 @@ function M.on_attach(client, bufnr)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
     vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set("n", "]g", vim.diagnostic.goto_next)
+    vim.keymap.set("n", "[g", vim.diagnostic.goto_prev)
 end
 
 local servers = {

@@ -251,10 +251,15 @@ bindsym $mod+Shift+r restart
 # bindsym $mod+Shift+e exec i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 exec --no-startup-id nm-applet
 exec --no-startup-id fcitx5
-exec --no-startup-id xautolock -time 10 -locker i3lock
+exec --no-startup-id xautolock -time 30 -locker i3lock
 # exec --no-startup-id volumeicon
 exec --no-startup-id pa-applet
 # exec --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpaper/*
-bindsym $mod+Print exec --no-startup-id import -window root ~/Pictures/screenshot/screenshot`date "+%y%m%d%H%M"`.jpg
+# Screenshot: full screen to file
+bindsym $mod+Print exec --no-startup-id maim ~/Pictures/screenshot/screenshot_$(date +%y%m%d%H%M%S).png
+bindsym $mod+Sys_Req exec --no-startup-id maim ~/Pictures/screenshot/screenshot_$(date +%y%m%d%H%M%S).png
+# Screenshot: select region to clipboard
+bindsym $mod+Shift+Print exec --no-startup-id maim -s ~/Pictures/screenshot/screenshot_$(date +%y%m%d%H%M%S).png
+bindsym $mod+Shift+Sys_Req exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
 focus_follows_mouse no
 focus_wrapping no

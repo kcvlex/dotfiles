@@ -36,6 +36,7 @@ export JAVA_FONTS=/usr/share/fonts/TTF
 export JAVA_HOME=/usr/lib/jvm/default
 export PATH="${HOME}/.local/bin:${PATH}"
 export PATH="${PATH}:${HOME}/go/bin"
+export PATH="$(aqua root-dir)/bin:$PATH"
 
 # eval $(opam env)
 
@@ -58,3 +59,7 @@ if [ -f '/home/kcvlex/google-cloud-sdk/path.zsh.inc' ]; then . '/home/kcvlex/goo
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/kcvlex/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/kcvlex/google-cloud-sdk/completion.zsh.inc'; fi
+
+. "$HOME/.cargo/env"
+
+export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
