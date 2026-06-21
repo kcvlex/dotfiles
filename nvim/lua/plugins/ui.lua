@@ -10,3 +10,5 @@ require('lualine').setup {
 }
 
 require('lsp-endhints').setup {}
+
+require('ibl').setup {}

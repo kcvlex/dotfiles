@@ -14,6 +14,8 @@ vim.opt.autoread = true
 vim.bo.autoread = true
 vim.opt.inccommand = ''
 vim.opt.viminfo = { "'100", '<0', 's10', 'h' }
+vim.opt.conceallevel = 0
+vim.g.tex_conceal = ''
 
 vim.cmd.highlight({ 'LineNr', 'ctermfg=239' })
 

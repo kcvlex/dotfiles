@@ -8,7 +8,7 @@ vim.call('plug#begin')
     Plug 'rust-lang/rust.vim'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'nvim-tree/nvim-web-devicons'
-    Plug 'Yggdroot/indentLine'
+    Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'hashivim/vim-terraform'
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'

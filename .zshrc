@@ -63,3 +63,5 @@ if [ -f '/home/kcvlex/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/kcvl
 . "$HOME/.cargo/env"
 
 export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
+
+eval "$(direnv hook zsh)"
